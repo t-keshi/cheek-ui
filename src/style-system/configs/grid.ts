@@ -1,95 +1,118 @@
 import { TProperty } from 'csstype';
-import { CuiSystemValueStrict } from '../../type';
+import { CuiSystemValueStrict, Transform } from '../../type';
 import { transformDefault } from './transform/transformDefault';
 
+const transformFrame: Transform = (value) => `repeat(${value}, minmax(0px, 1fr))`;
+
+const transformSpan: Transform = (value) => `span ${value}`;
+
 export const grid = {
-  gridGap: {
-    properties: ['gridGap'],
+  columns: {
+    properties: ['gridTemplateColumns'],
+    transform: transformFrame,
+  },
+  rows: {
+    properties: ['gridTemplateRows'],
+    transform: transformFrame,
+  },
+  colSpan: {
+    properties: ['gridColumnStart', 'gridColumnEnd'],
+    transform: transformSpan,
+  },
+  rowSpan: {
+    properties: ['gridRowStart', 'gridRowEnd'],
+    transform: transformSpan,
+  },
+  gap: {
+    properties: ['gap'],
     transform: transformDefault,
   },
-  gridColumnGap: {
-    properties: ['gridColumnGap'],
+  columnGap: {
+    properties: ['columnGap'],
     transform: transformDefault,
   },
-  gridRowGap: {
-    properties: ['gridRowGap'],
+  rowGap: {
+    properties: ['rowGap'],
     transform: transformDefault,
   },
-  gridColumn: {
+  column: {
     properties: ['gridColumn'],
     transform: transformDefault,
   },
-  gridRow: {
+  row: {
     properties: ['gridRow'],
     transform: transformDefault,
   },
-  gridAutoFlow: {
+  autoFlow: {
     properties: ['gridAutoFlow'],
     transform: transformDefault,
   },
-  gridAutoColumns: {
+  autoColumns: {
     properties: ['gridAutoColumns'],
     transform: transformDefault,
   },
-  gridColumnStart: {
-    properties: ['gridColumnStart'],
-    transform: transformDefault,
-  },
-  gridColumnEnd: {
-    properties: ['gridColumnEnd'],
-    transform: transformDefault,
-  },
-  gridRowStart: {
-    properties: ['gridRowStart'],
-    transform: transformDefault,
-  },
-  gridRowEnd: {
-    properties: ['gridRowEnd'],
-    transform: transformDefault,
-  },
-  gridAutoRows: {
+  autoRows: {
     properties: ['gridAutoRows'],
     transform: transformDefault,
   },
-  gridTemplate: {
+  colStart: {
+    properties: ['gridColumnStart'],
+    transform: transformDefault,
+  },
+  colEnd: {
+    properties: ['gridColumnEnd'],
+    transform: transformDefault,
+  },
+  rowStart: {
+    properties: ['gridRowStart'],
+    transform: transformDefault,
+  },
+  rowEnd: {
+    properties: ['gridRowEnd'],
+    transform: transformDefault,
+  },
+  template: {
     properties: ['gridTemplate'],
     transform: transformDefault,
   },
-  gridTemplateColumns: {
-    properties: ['gridTemplateColumns'],
-    transform: transformDefault,
-  },
-  gridTemplateRows: {
-    properties: ['gridTemplateRows'],
-    transform: transformDefault,
-  },
-  gridTemplateAreas: {
+  templateAreas: {
     properties: ['gridTemplateAreas'],
     transform: transformDefault,
   },
-  gridArea: {
+  templateColumns: {
+    properties: ['gridTemplateColumns'],
+    transform: transformDefault,
+  },
+  templateRows: {
+    properties: ['gridTemplateRows'],
+    transform: transformDefault,
+  },
+  area: {
     properties: ['gridArea'],
     transform: transformDefault,
   },
 };
 
 export type GridProps = Partial<{
-  display: CuiSystemValueStrict<'initial' | 'grid' | 'inline-grid'>;
-  gridGap: CuiSystemValueStrict<TProperty.GridGap>;
-  gridColumnGap: CuiSystemValueStrict<TProperty.GridColumnGap>;
-  gridRowGap: CuiSystemValueStrict<TProperty.GridRowGap>;
-  gridColumn: CuiSystemValueStrict<TProperty.GridColumn>;
-  gridRow: CuiSystemValueStrict<TProperty.GridRow>;
-  gridAutoFlow: CuiSystemValueStrict<TProperty.GridAutoFlow>;
-  gridAutoColumns: CuiSystemValueStrict<TProperty.GridAutoColumns>;
-  gridColumnStart: CuiSystemValueStrict<TProperty.GridColumnStart>;
-  gridColumnEnd: CuiSystemValueStrict<TProperty.GridColumnEnd>;
-  gridRowStart: CuiSystemValueStrict<TProperty.GridRowStart>;
-  gridRowEnd: CuiSystemValueStrict<TProperty.GridRowEnd>;
-  gridAutoRows: CuiSystemValueStrict<TProperty.GridAutoRows>;
-  gridTemplate: CuiSystemValueStrict<TProperty.GridTemplate>;
-  gridTemplateColumns: CuiSystemValueStrict<TProperty.GridTemplateColumns>;
-  gridTemplateRows: CuiSystemValueStrict<TProperty.GridTemplateRows>;
-  gridTemplateAreas: CuiSystemValueStrict<TProperty.GridTemplateAreas>;
-  gridArea: CuiSystemValueStrict<TProperty.GridArea>;
+  columns: CuiSystemValueStrict<number>;
+  rows: CuiSystemValueStrict<number>;
+  colSpan: CuiSystemValueStrict<number>;
+  rowSpan: CuiSystemValueStrict<number>;
+  gap: CuiSystemValueStrict<TProperty.Gap>;
+  columnGap: CuiSystemValueStrict<TProperty.ColumnGap>;
+  rowGap: CuiSystemValueStrict<TProperty.RowGap>;
+  column: CuiSystemValueStrict<TProperty.GridColumn>;
+  row: CuiSystemValueStrict<TProperty.GridRow>;
+  autoFlow: CuiSystemValueStrict<TProperty.GridAutoFlow>;
+  autoColumns: CuiSystemValueStrict<TProperty.GridAutoColumns>;
+  autoRows: CuiSystemValueStrict<TProperty.GridAutoRows>;
+  colStart: CuiSystemValueStrict<TProperty.GridColumnStart>;
+  rowStart: CuiSystemValueStrict<TProperty.GridRowStart>;
+  colEnd: CuiSystemValueStrict<TProperty.GridColumnEnd>;
+  rowEnd: CuiSystemValueStrict<TProperty.GridRowEnd>;
+  template: CuiSystemValueStrict<TProperty.GridTemplate>;
+  templateAreas: CuiSystemValueStrict<TProperty.GridTemplateAreas>;
+  templateColumns: CuiSystemValueStrict<TProperty.GridTemplateColumns>;
+  templateRows: CuiSystemValueStrict<TProperty.GridTemplateRows>;
+  area: CuiSystemValueStrict<TProperty.GridArea>;
 }>;

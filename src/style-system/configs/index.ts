@@ -1,3 +1,9 @@
+// background
+export { background } from './background';
+export type { BackgroundProps } from './background';
+// boarder
+export { border } from './border';
+export type { BorderProps } from './border';
 // flex
 export { flex } from './flex';
 export type { FlexProps } from './flex';

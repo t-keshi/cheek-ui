@@ -1,4 +1,6 @@
-export const zIndex = {
+import { ZIndex } from '../type';
+
+export const zIndex: ZIndex = {
   mobileStepper: 1000,
   fab: 1050,
   speedDial: 1050,
@@ -7,4 +9,4 @@ export const zIndex = {
   modal: 1300,
   snackbar: 1400,
   tooltip: 1500,
-}
+};

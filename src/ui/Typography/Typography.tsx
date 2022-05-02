@@ -3,24 +3,37 @@ import clsx from 'clsx';
 import { forwardRef } from 'react';
 import { space, SpaceProps, text, TextProps } from '../../style-system/configs';
 import { convertToCssFactory } from '../../style-system/convertToCss';
-import { EmotionProps, OwnerStateRecord, OwnerStateResolver, Theme } from '../../type';
+import {
+  EmotionProps,
+  OwnerStateRecord,
+  OwnerStateResolver,
+  Theme,
+  TypographyVariantKey,
+} from '../../type';
 
-type TypographyOwnerState = Partial<{
-  variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2';
+type TypographyOwnerProps = Partial<{
+  variant: TypographyVariantKey;
   noWrap: boolean;
   gutterBottom: boolean;
   paragraph: boolean;
 }>;
 
+type TypographyOwnerState = {
+  variant: TypographyVariantKey;
+  noWrap: boolean;
+  gutterBottom: boolean;
+  paragraph: boolean;
+};
+
 type TypographyCuiSystemProps = SpaceProps & TextProps;
 
 type TypographyRootType = StyledComponent<
   Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>, 'color'>,
-  OwnerStateRecord<TypographyOwnerState> & TypographyCuiSystemProps & EmotionProps,
+  OwnerStateRecord<TypographyOwnerProps> & TypographyCuiSystemProps & EmotionProps,
   Theme
 >;
 
-export type TypographyProps = TypographyOwnerState &
+export type TypographyProps = TypographyOwnerProps &
   TypographyCuiSystemProps &
   Omit<EmotionProps, 'theme'> & { className?: string };
 
@@ -69,6 +82,9 @@ const variantMapping = {
   subtitle2: 'h6',
   body1: 'p',
   body2: 'p',
+  button: 'button',
+  caption: 'span',
+  overline: 'span',
 } as const;
 
 export const Typography = forwardRef<HTMLParagraphElement, TypographyProps>((props, ref) => {
@@ -82,8 +98,7 @@ export const Typography = forwardRef<HTMLParagraphElement, TypographyProps>((pro
     ...cuiStyleProps
   } = props;
 
-  const ownerState = {
-    as,
+  const ownerState: TypographyOwnerState = {
     variant,
     noWrap,
     gutterBottom,

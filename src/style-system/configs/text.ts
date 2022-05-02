@@ -19,13 +19,17 @@ const transformColor: Transform = (value, theme) => {
 };
 
 export const text = {
+  color: {
+    properties: ['color'],
+    transform: transformColor,
+  },
   display: {
     properties: ['display'],
     transform: transformDefault,
   },
-  color: {
-    properties: ['color'],
-    transform: transformColor,
+  fs: {
+    properties: ['fontSize'],
+    transform: transformDefault,
   },
   lh: {
     properties: ['lineHeight'],
@@ -81,6 +85,7 @@ export type TextProps = Partial<{
     | 'secondary'
     | 'error'
   >;
+  fs: CuiSystemValueStrict<TProperty.FontSize>;
   ls: CuiSystemValueStrict<TProperty.LetterSpacing>;
   lh: CuiSystemValueStrict<TProperty.LineHeight>;
   textDecoration: CuiSystemValueStrict<TProperty.TextDecoration>;

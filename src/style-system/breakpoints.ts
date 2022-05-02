@@ -32,8 +32,7 @@ export const handleBreakpoints = (
       return prev;
     }
     const breakpointsArray = Object.keys(theme.breakpoints);
-    const breakpointValue =
-      theme.breakpoints[breakpointsArray[idx] as keyof Breakpoints['breakpoints']];
+    const breakpointValue = theme.breakpoints[breakpointsArray[idx] as keyof Breakpoints];
     const mediaQuery = `@media (min-width: ${breakpointValue}px)`;
     const nested = generate(properties, transform, cuiSystemValue[idx], theme);
 

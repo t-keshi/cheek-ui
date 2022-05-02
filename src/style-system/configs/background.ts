@@ -1,15 +1,30 @@
 import { TProperty } from 'csstype';
-import { CuiSystemValueStrict } from '../../type';
+import { CuiSystemValueStrict, Transform } from '../../type';
+import { accessTheme } from './transform/accessTheme';
 import { transformDefault } from './transform/transformDefault';
+
+const transformBgColor: Transform = (value, theme) => {
+  if (
+    value === 'primary' ||
+    value === 'secondary' ||
+    value === 'error' ||
+    value === 'info' ||
+    value === 'success'
+  ) {
+    return accessTheme(value, theme);
+  }
+
+  return value;
+};
 
 export const background = {
   bg: {
     properties: ['background'],
-    transform: transformDefault,
+    transform: transformBgColor,
   },
   bgColor: {
     properties: ['backgroundColor'],
-    transform: transformDefault,
+    transform: transformBgColor,
   },
   bgPosition: {
     properties: ['backgroundPosition'],
@@ -39,7 +54,9 @@ export const background = {
 
 export type BackgroundProps = Partial<{
   bg: CuiSystemValueStrict<TProperty.Background>;
-  bgColor: CuiSystemValueStrict<TProperty.BackgroundColor>;
+  bgColor: CuiSystemValueStrict<
+    'initial' | 'inherit' | 'primary' | 'secondary' | 'error' | 'info' | 'success'
+  >;
   bgPosition: CuiSystemValueStrict<TProperty.BackgroundPosition>;
   bgRepeat: CuiSystemValueStrict<TProperty.BackgroundRepeat>;
   bgImage: CuiSystemValueStrict<TProperty.BackgroundImage>;

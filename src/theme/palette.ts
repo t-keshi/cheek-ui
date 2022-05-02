@@ -25,8 +25,8 @@ export const basePalette = {
   },
   info: {
     light: '#f8f8f9',
-    main: '#e12c1d',
-    dark: '#c5c5c6',
+    main: '#202020',
+    dark: '#000000',
   },
   success: {
     light: '#58e788',
@@ -35,7 +35,7 @@ export const basePalette = {
   },
 };
 
-export const lightModePalette: Palette['palette'] = {
+export const lightModePalette: Palette = {
   ...basePalette,
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
@@ -59,7 +59,7 @@ export const lightModePalette: Palette['palette'] = {
   },
 };
 
-export const darkModePalette: Palette['palette'] = {
+export const darkModePalette: Palette = {
   ...basePalette,
   text: {
     primary: '#ffffff',

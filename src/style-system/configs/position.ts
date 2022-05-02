@@ -8,7 +8,7 @@ export const position = {
     transform: transformDefault,
   },
   zIndex: {
-    properties: ['zIndex:'],
+    properties: ['zIndex'],
     transform: transformDefault,
   },
   top: {

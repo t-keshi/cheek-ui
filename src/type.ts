@@ -113,106 +113,109 @@ export type OwnerStateResolver<TOwnerState> = (props: {
 }) => {};
 
 export type Breakpoints = {
-  breakpoints: {
-    [P in 'xs' | 'sm' | 'md' | 'lg' | 'xl']: number;
-  };
+  [P in 'xs' | 'sm' | 'md' | 'lg' | 'xl']: number;
 };
 
-export type TypographyVariant = {
+export type TypographyVariantValue = {
   fontSize: string;
   lineHeight: number;
   fontWeight: number;
   letterSpacing: string;
 };
 
-export type Typography = {
-  typography: {
-    fontFamily: string;
-    h1: TypographyVariant;
-    h2: TypographyVariant;
-    h3: TypographyVariant;
-    h4: TypographyVariant;
-    h5: TypographyVariant;
-    h6: TypographyVariant;
-    subtitle1: TypographyVariant;
-    subtitle2: TypographyVariant;
-    body1: TypographyVariant;
-    body2: TypographyVariant;
-    button: TypographyVariant;
-    caption: TypographyVariant;
-    overline: TypographyVariant;
-  };
+export type TypographyVariantKey =
+  | 'h1'
+  | 'h2'
+  | 'h3'
+  | 'h4'
+  | 'h5'
+  | 'h6'
+  | 'subtitle1'
+  | 'subtitle2'
+  | 'body1'
+  | 'body2'
+  | 'button'
+  | 'caption'
+  | 'overline';
+
+export type TypographyVariant = {
+  [P in TypographyVariantKey]: TypographyVariantValue;
 };
+
+export type Typography = {
+  fontFamily: string;
+} & TypographyVariant;
 
 export type Palette = {
-  palette: {
-    common: {
-      black: string;
-      white: string;
-    };
-    primary: {
-      light: string;
-      main: string;
-      dark: string;
-      contrastText: string;
-    };
-    secondary: {
-      light: string;
-      main: string;
-      dark: string;
-      contrastText: string;
-    };
-    error: {
-      light: string;
-      main: string;
-      dark: string;
-    };
-    info: {
-      light: string;
-      main: string;
-      dark: string;
-    };
-    success: {
-      light: string;
-      main: string;
-      dark: string;
-    };
-    text: {
-      primary: string;
-      secondary: string;
-      disabled: string;
-    };
-    divider: string;
-    background: string;
-    action: {
-      active: string;
-      hover: string;
-      hoverOpacity: number;
-      selected: string;
-      selectedOpacity: number;
-      disabled: string;
-      disabledBackground: string;
-      disabledOpacity: number;
-      focus: string;
-      focusOpacity: number;
-      activatedOpacity: number;
-    };
+  common: {
+    black: string;
+    white: string;
+  };
+  primary: {
+    light: string;
+    main: string;
+    dark: string;
+    contrastText: string;
+  };
+  secondary: {
+    light: string;
+    main: string;
+    dark: string;
+    contrastText: string;
+  };
+  error: {
+    light: string;
+    main: string;
+    dark: string;
+  };
+  info: {
+    light: string;
+    main: string;
+    dark: string;
+  };
+  success: {
+    light: string;
+    main: string;
+    dark: string;
+  };
+  text: {
+    primary: string;
+    secondary: string;
+    disabled: string;
+  };
+  divider: string;
+  background: string;
+  action: {
+    active: string;
+    hover: string;
+    hoverOpacity: number;
+    selected: string;
+    selectedOpacity: number;
+    disabled: string;
+    disabledBackground: string;
+    disabledOpacity: number;
+    focus: string;
+    focusOpacity: number;
+    activatedOpacity: number;
   };
 };
 
-export type Theme = Breakpoints &
-  Typography &
-  Palette & {
-    radius: number;
-    shadows: string[];
-    zIndex: {
-      mobileStepper: number;
-      fab: number;
-      speedDial: number;
-      appBar: number;
-      drawer: number;
-      modal: number;
-      snackbar: number;
-      tooltip: number;
-    };
-  };
+export type ZIndex = {
+  mobileStepper: number;
+  fab: number;
+  speedDial: number;
+  appBar: number;
+  drawer: number;
+  modal: number;
+  snackbar: number;
+  tooltip: number;
+};
+
+export type Theme = {
+  breakpoints: Breakpoints;
+  typography: Typography;
+  zIndex: ZIndex;
+  palette: Palette;
+  radius: number;
+  shadows: string[];
+};

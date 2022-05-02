@@ -1,4 +1,4 @@
-// eslint-disable @typescript-eslint/no-explicit-any
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 const isPlainObject = (item: unknown): item is Record<keyof any, unknown> =>
   item !== null && typeof item === 'object' && item.constructor === Object;

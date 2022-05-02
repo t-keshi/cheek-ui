@@ -1,4 +1,6 @@
-export const typography = {
+import { Typography } from '../type';
+
+export const typography: Typography = {
   fontFamily: [
     '-apple-system',
     'BlinkMacSystemFont',

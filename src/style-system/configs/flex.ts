@@ -3,7 +3,7 @@ import { CuiSystemValueStrict } from '../../type';
 import { transformDefault } from './transform/transformDefault';
 
 export const flex = {
-  alignItems: {
+  align: {
     properties: ['alignItems'],
     transform: transformDefault,
   },
@@ -19,7 +19,7 @@ export const flex = {
     properties: ['justifyItems'],
     transform: transformDefault,
   },
-  justifyContent: {
+  justify: {
     properties: ['justifyContent'],
     transform: transformDefault,
   },
@@ -31,23 +31,23 @@ export const flex = {
     properties: ['flex'],
     transform: transformDefault,
   },
-  flexGrow: {
+  grow: {
     properties: ['flexGrow'],
     transform: transformDefault,
   },
-  flexShrink: {
+  shrink: {
     properties: ['flexShrink'],
     transform: transformDefault,
   },
-  flexBasis: {
+  basis: {
     properties: ['flexBasis'],
     transform: transformDefault,
   },
-  flexWrap: {
+  wrap: {
     properties: ['flexWrap'],
     transform: transformDefault,
   },
-  flexDirection: {
+  direction: {
     properties: ['flexDirection'],
     transform: transformDefault,
   },
@@ -66,19 +66,18 @@ export const flex = {
 };
 
 export type FlexProps = Partial<{
-  display: CuiSystemValueStrict<'initial' | 'flex' | 'inline-flex'>;
-  alignItems: CuiSystemValueStrict<TProperty.AlignItems>;
+  align: CuiSystemValueStrict<TProperty.AlignItems>;
   alignContent: CuiSystemValueStrict<TProperty.AlignContent>;
   alignSelf: CuiSystemValueStrict<TProperty.AlignSelf>;
   justifyItems: CuiSystemValueStrict<TProperty.JustifyItems>;
-  justifyContent: CuiSystemValueStrict<TProperty.JustifyContent>;
+  justify: CuiSystemValueStrict<TProperty.JustifyContent>;
   justifySelf: CuiSystemValueStrict<TProperty.JustifySelf>;
   flex: CuiSystemValueStrict<TProperty.Flex>;
-  flexGrow: CuiSystemValueStrict<TProperty.FlexGrow>;
-  flexShrink: CuiSystemValueStrict<TProperty.FlexShrink>;
-  flexBasis: CuiSystemValueStrict<TProperty.FlexBasis>;
-  flexWrap: CuiSystemValueStrict<TProperty.FlexWrap>;
-  flexDirection: CuiSystemValueStrict<TProperty.FlexDirection>;
+  grow: CuiSystemValueStrict<TProperty.FlexGrow>;
+  shrink: CuiSystemValueStrict<TProperty.FlexShrink>;
+  basis: CuiSystemValueStrict<TProperty.FlexBasis>;
+  wrap: CuiSystemValueStrict<TProperty.FlexWrap>;
+  direction: CuiSystemValueStrict<TProperty.FlexDirection>;
   gap: CuiSystemValueStrict<TProperty.RowGap | TProperty.ColumnGap>;
   columnGap: CuiSystemValueStrict<TProperty.ColumnGap>;
   rowGap: CuiSystemValueStrict<TProperty.RowGap>;

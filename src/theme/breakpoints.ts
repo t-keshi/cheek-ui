@@ -1,6 +1,6 @@
 import { Breakpoints } from '../type';
 
-export const breakpoints: Breakpoints['breakpoints'] = {
+export const breakpoints: Breakpoints = {
   xs: 0, // phone
   sm: 600, // tablet
   md: 900, // small laptop

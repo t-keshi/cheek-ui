@@ -1,4 +1,4 @@
-import { Theme } from '../../../theme/ThemeProvider';
+import { Theme } from '../../../type';
 
 export const accessTheme = (
   value:
@@ -8,7 +8,10 @@ export const accessTheme = (
     | 'textSecondary'
     | 'textDisabled'
     | 'disabled'
-    | 'error',
+    | 'error'
+    | 'info'
+    | 'success'
+    | 'divider',
   theme: Theme,
 ) => {
   const themeAccessMap = {
@@ -19,6 +22,9 @@ export const accessTheme = (
     textDisabled: theme.palette.text.disabled,
     disabled: theme.palette.action.disabled,
     error: theme.palette.error.main,
+    info: theme.palette.info.main,
+    success: theme.palette.success.main,
+    divider: theme.palette.divider,
   };
 
   return themeAccessMap[value];
