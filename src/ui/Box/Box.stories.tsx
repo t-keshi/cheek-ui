@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof Box>;
 
 const Template: ComponentStory<typeof Box> = () => (
-  <Box as="section" className="" display="block" w={400} h={200} bgColor="red">
+  <Box as="section" className="" display="block" size={800} bgColor="red">
     <Box display="inline" mb={8} />
     <p>hoe</p>
   </Box>

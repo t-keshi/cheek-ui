@@ -4,6 +4,7 @@ import {
   useTheme as useEmotionTheme,
 } from '@emotion/react';
 import { ThemeProvider as StorybookThemeProvider } from '@storybook/theming';
+import { Theme } from '../type';
 import { breakpoints } from './breakpoints';
 import { darkModePalette, lightModePalette } from './palette';
 import { radius } from './radius';
@@ -14,7 +15,7 @@ import { zIndex } from './zIndex';
 
 type Mode = 'light' | 'dark';
 
-const configureTheme = (mode: Mode) => ({
+const configureTheme = (mode: Mode): Theme => ({
   palette: mode === 'light' ? lightModePalette : darkModePalette,
   breakpoints,
   radius,
@@ -22,8 +23,6 @@ const configureTheme = (mode: Mode) => ({
   zIndex,
   typography,
 });
-
-export type Theme = ReturnType<typeof configureTheme>;
 
 interface ThemeProviderProps {
   children: React.ReactNode;
@@ -61,4 +60,8 @@ export const StThemeProvider = ({
   );
 };
 
-export const useTheme = (): Theme => useEmotionTheme();
+export const useTheme = () => {
+  const theme = useEmotionTheme() as Theme;
+
+  return theme;
+};

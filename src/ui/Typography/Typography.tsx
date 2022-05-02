@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import { forwardRef } from 'react';
 import { space, SpaceProps, text, TextProps } from '../../style-system/configs';
 import { convertToCssFactory } from '../../style-system/convertToCss';
-import { AsProps, EmotionProps, OwnerStateRecord, OwnerStateResolver, Theme } from '../../type';
+import { EmotionProps, OwnerStateRecord, OwnerStateResolver, Theme } from '../../type';
 
 type TypographyOwnerState = Partial<{
   variant: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'subtitle1' | 'subtitle2' | 'body1' | 'body2';
@@ -22,7 +22,7 @@ type TypographyRootType = StyledComponent<
 
 export type TypographyProps = TypographyOwnerState &
   TypographyCuiSystemProps &
-  AsProps & { className?: string } & { children: React.ReactNode };
+  Omit<EmotionProps, 'theme'> & { className?: string };
 
 const ownerStateResolver: OwnerStateResolver<TypographyOwnerState> = ({ ownerState, theme }) => ({
   ...(ownerState.variant && theme.typography[ownerState.variant]),

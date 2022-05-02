@@ -1,10 +1,10 @@
-import { Theme } from '../theme/ThemeProvider';
 import {
   CuiSystemConfig,
   CuiSystemKey,
   CuiSystemProps,
   CuiSystemValue,
   EmotionProps,
+  Theme,
 } from '../type';
 import { deepMerge } from '../utils/deepMerge';
 import { handleBreakpoints } from './breakpoints';

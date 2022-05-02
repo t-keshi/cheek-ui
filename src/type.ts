@@ -1,8 +1,6 @@
-export type AsProps = {
+export type EmotionProps = { theme: Theme } & { children?: React.ReactNode } & {
   as?: React.ElementType;
 };
-
-export type EmotionProps = { theme: Theme } & { children?: React.ReactNode } & AsProps;
 
 export type BreakPointsValue = (string | number)[];
 
@@ -146,61 +144,65 @@ export type Typography = {
   };
 };
 
-export type Theme = Breakpoints &
-  Typography & {
-    palette: {
-      common: {
-        black: string;
-        white: string;
-      };
-      primary: {
-        light: string;
-        main: string;
-        dark: string;
-        contrastText: string;
-      };
-      secondary: {
-        light: string;
-        main: string;
-        dark: string;
-        contrastText: string;
-      };
-      error: {
-        light: string;
-        main: string;
-        dark: string;
-      };
-      info: {
-        light: string;
-        main: string;
-        dark: string;
-      };
-      success: {
-        light: string;
-        main: string;
-        dark: string;
-      };
-      text: {
-        primary: string;
-        secondary: string;
-        disabled: string;
-      };
-      divider: string;
-      background: string;
-      action: {
-        active: string;
-        hover: string;
-        hoverOpacity: number;
-        selected: string;
-        selectedOpacity: number;
-        disabled: string;
-        disabledBackground: string;
-        disabledOpacity: number;
-        focus: string;
-        focusOpacity: number;
-        activatedOpacity: number;
-      };
+export type Palette = {
+  palette: {
+    common: {
+      black: string;
+      white: string;
     };
+    primary: {
+      light: string;
+      main: string;
+      dark: string;
+      contrastText: string;
+    };
+    secondary: {
+      light: string;
+      main: string;
+      dark: string;
+      contrastText: string;
+    };
+    error: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+    info: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+    success: {
+      light: string;
+      main: string;
+      dark: string;
+    };
+    text: {
+      primary: string;
+      secondary: string;
+      disabled: string;
+    };
+    divider: string;
+    background: string;
+    action: {
+      active: string;
+      hover: string;
+      hoverOpacity: number;
+      selected: string;
+      selectedOpacity: number;
+      disabled: string;
+      disabledBackground: string;
+      disabledOpacity: number;
+      focus: string;
+      focusOpacity: number;
+      activatedOpacity: number;
+    };
+  };
+};
+
+export type Theme = Breakpoints &
+  Typography &
+  Palette & {
     radius: number;
     shadows: string[];
     zIndex: {

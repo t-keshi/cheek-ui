@@ -1,7 +1,6 @@
 import { TProperty } from 'csstype';
 import { CuiSystemValueStrict } from '../../type';
 import { transformDefault } from './transform/transformDefault';
-import { transformPx } from './transform/transformPx';
 
 export const layout = {
   display: {
@@ -10,31 +9,31 @@ export const layout = {
   },
   size: {
     properties: ['width', 'height'],
-    transform: transformPx,
+    transform: transformDefault,
   },
   w: {
     properties: ['width'],
-    transform: transformPx,
+    transform: transformDefault,
   },
   maxW: {
     properties: ['maxWidth'],
-    transform: transformPx,
+    transform: transformDefault,
   },
   minW: {
     properties: ['minWidth'],
-    transform: transformPx,
+    transform: transformDefault,
   },
   h: {
     properties: ['height'],
-    transform: transformPx,
+    transform: transformDefault,
   },
   maxH: {
     properties: ['maxHeight'],
-    transform: transformPx,
+    transform: transformDefault,
   },
   minH: {
     properties: ['minWidth'],
-    transform: transformPx,
+    transform: transformDefault,
   },
   overflow: {
     properties: ['overflow'],
