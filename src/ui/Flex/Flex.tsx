@@ -15,7 +15,7 @@ import {
 } from '../../style-system/configs';
 import { space, SpaceProps } from '../../style-system/configs/space';
 import { convertToCssFactory } from '../../style-system/convertToCss';
-import { EmotionProps, OwnerStateRecord, OwnerStateResolver, Theme } from '../../type';
+import { EmotionProps, OwnerStateRecord, Theme } from '../../type';
 
 type FlexOwnerState = Partial<{
   inline: boolean;
@@ -36,12 +36,6 @@ export type FlexProps = FlexOwnerState &
   FlexCuiSystemProps &
   Omit<EmotionProps, 'theme'> & { className?: string };
 
-const ownerStateResolver: OwnerStateResolver<FlexOwnerState> = ({ ownerState }) => ({
-  ...(ownerState.inline && {
-    display: 'inline-flex',
-  }),
-});
-
 const cuiSystemConfig = {
   ...border,
   ...background,
@@ -53,7 +47,17 @@ const cuiSystemConfig = {
 
 const css = convertToCssFactory(cuiSystemConfig);
 
-export const FlexRoot = styled.div({ display: 'flex' }, ownerStateResolver, css) as FlexRootType;
+export const FlexRoot = styled.div((props) => {
+  const { ownerState } = props as { ownerState: FlexOwnerState; theme: Theme };
+
+  return {
+    display: 'flex',
+    ...(ownerState.inline && {
+      display: 'inline-flex',
+    }),
+    ...css(props),
+  };
+}) as FlexRootType;
 
 const classes = {
   root: 'CuiFlex-root',

@@ -21,9 +21,9 @@ const convertToCss = (
   return handleBreakpoints(cuiSystemValue, properties, transform, theme);
 };
 
-export const convertToCssFactory = (cuiSystemConfig: CuiSystemConfig) => (
-  props: CuiSystemProps & EmotionProps,
-) => {
+export const convertToCssFactory = <TCuiSystemProps extends CuiSystemProps>(
+  cuiSystemConfig: CuiSystemConfig,
+) => (props: TCuiSystemProps & EmotionProps) => {
   // rest including html attributes, emotion props, cssStyleProps
   const { children: _, theme, ...rest } = props;
   const h = Object.keys(rest).reduce((prevCss, restKey) => {

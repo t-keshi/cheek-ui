@@ -3,7 +3,7 @@ import { Box } from '../Box/Box';
 import { Grid } from './Grid';
 
 export default {
-  title: 'Inputs/Grid',
+  title: 'Layout/Grid',
   component: Grid,
   parameters: {
     layout: 'fullscreen',

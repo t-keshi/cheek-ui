@@ -1,5 +1,7 @@
 import { Breakpoints, CuiSystemValue, Theme, Transform } from '../type';
 
+export const mq = (breakpointsValue: number) => `@media (min-width: ${breakpointsValue}px)`;
+
 const generate = (
   properties: string[],
   transform: Transform,
@@ -32,8 +34,8 @@ export const handleBreakpoints = (
       return prev;
     }
     const breakpointsArray = Object.keys(theme.breakpoints);
-    const breakpointValue = theme.breakpoints[breakpointsArray[idx] as keyof Breakpoints];
-    const mediaQuery = `@media (min-width: ${breakpointValue}px)`;
+    const breakpointsValue = theme.breakpoints[breakpointsArray[idx] as keyof Breakpoints];
+    const mediaQuery = mq(breakpointsValue);
     const nested = generate(properties, transform, cuiSystemValue[idx], theme);
 
     return {

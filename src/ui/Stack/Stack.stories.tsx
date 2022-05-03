@@ -4,7 +4,7 @@ import { Stack } from './Stack';
 import { StackDivider } from './StackDivider';
 
 export default {
-  title: 'Inputs/Stack',
+  title: 'Layout/Stack',
   component: Stack,
   parameters: {
     layout: 'fullscreen',
@@ -25,7 +25,7 @@ const Template: ComponentStory<typeof Stack> = () => (
       <Box size={200} bgColor="primary">
         hoe
       </Box>
-      <Box size={200} bgColor="error">
+      <Box size={200} bgColor="secondary">
         hoe
       </Box>
     </Stack>

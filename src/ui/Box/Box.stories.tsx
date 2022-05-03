@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Box } from './Box';
 
 export default {
-  title: 'Inputs/Box',
+  title: 'Layout/Box',
   component: Box,
   parameters: {
     layout: 'fullscreen',

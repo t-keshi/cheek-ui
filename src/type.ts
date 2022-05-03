@@ -112,8 +112,10 @@ export type OwnerStateResolver<TOwnerState> = (props: {
   // eslint-disable-next-line @typescript-eslint/ban-types
 }) => {};
 
+export type BreakpointsKey = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
 export type Breakpoints = {
-  [P in 'xs' | 'sm' | 'md' | 'lg' | 'xl']: number;
+  [P in BreakpointsKey]: number;
 };
 
 export type TypographyVariantValue = {
@@ -146,38 +148,23 @@ export type Typography = {
   fontFamily: string;
 } & TypographyVariant;
 
+export type PaletteVariant = {
+  light: string;
+  main: string;
+  dark: string;
+  contrastText: string;
+};
+
 export type Palette = {
   common: {
     black: string;
     white: string;
   };
-  primary: {
-    light: string;
-    main: string;
-    dark: string;
-    contrastText: string;
-  };
-  secondary: {
-    light: string;
-    main: string;
-    dark: string;
-    contrastText: string;
-  };
-  error: {
-    light: string;
-    main: string;
-    dark: string;
-  };
-  info: {
-    light: string;
-    main: string;
-    dark: string;
-  };
-  success: {
-    light: string;
-    main: string;
-    dark: string;
-  };
+  primary: PaletteVariant;
+  secondary: PaletteVariant;
+  error: PaletteVariant;
+  info: PaletteVariant;
+  success: PaletteVariant;
   text: {
     primary: string;
     secondary: string;

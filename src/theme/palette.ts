@@ -11,27 +11,29 @@ export const basePalette = {
     dark: '#00599e',
     contrastText: '#ffffff',
   },
-  // same as primary by default
   secondary: {
-    light: '#e2eff9',
-    main: '#2185d0',
-    dark: '#00599e',
-    contrastText: '#ffffff',
+    light: '#e5ffbb',
+    main: '#b2d18a',
+    dark: '#82a05c',
+    contrastText: '#000000',
   },
   error: {
     light: '#ffe8e6',
     main: '#db2828',
     dark: '#a10000',
+    contrastText: '#ffffff',
   },
   info: {
     light: '#f8f8f9',
     main: '#202020',
     dark: '#000000',
+    contrastText: '#ffffff',
   },
   success: {
     light: '#58e788',
     main: '#276f86',
     dark: '#004459',
+    contrastText: '#ffffff',
   },
 };
 

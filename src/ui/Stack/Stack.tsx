@@ -16,7 +16,7 @@ import {
   SpaceProps,
 } from '../../style-system/configs';
 import { convertToCssFactory } from '../../style-system/convertToCss';
-import { EmotionProps, OwnerStateRecord, OwnerStateResolver, Theme } from '../../type';
+import { EmotionProps, OwnerStateRecord, Theme } from '../../type';
 import { getValidChildren } from '../../utils/getValidChildren';
 
 type StackOwnerProps = Partial<{
@@ -46,24 +46,6 @@ export type StackProps = StackOwnerProps &
   StackCuiSystemProps &
   Omit<EmotionProps, 'theme'> & { className?: string };
 
-const ownerStateResolver: OwnerStateResolver<StackOwnerState> = ({ ownerState }) => ({
-  ...(!ownerState.horizontal && {
-    flexDirection: 'column',
-  }),
-  ...(!ownerState.hasDivider &&
-    ownerState.horizontal && {
-      '& > *:not(style) ~ *:not(style)': {
-        marginLeft: ownerState.spacing * 8,
-      },
-    }),
-  ...(!ownerState.hasDivider &&
-    !ownerState.horizontal && {
-      '& > *:not(style) ~ *:not(style)': {
-        marginTop: ownerState.spacing * 8,
-      },
-    }),
-});
-
 const cuiSystemConfig = {
   ...border,
   ...background,
@@ -75,7 +57,29 @@ const cuiSystemConfig = {
 
 const css = convertToCssFactory(cuiSystemConfig);
 
-export const StackRoot = styled.div({ display: 'flex' }, ownerStateResolver, css) as StackRootType;
+export const StackRoot = styled.div((props) => {
+  const { ownerState } = props as { ownerState: StackOwnerState; theme: Theme };
+
+  return {
+    display: 'flex',
+    ...(!ownerState.horizontal && {
+      flexDirection: 'column',
+    }),
+    ...(!ownerState.hasDivider &&
+      ownerState.horizontal && {
+        '& > *:not(style) ~ *:not(style)': {
+          marginLeft: ownerState.spacing * 8,
+        },
+      }),
+    ...(!ownerState.hasDivider &&
+      !ownerState.horizontal && {
+        '& > *:not(style) ~ *:not(style)': {
+          marginTop: ownerState.spacing * 8,
+        },
+      }),
+    ...css(props),
+  };
+}) as StackRootType;
 
 const classes = {
   root: 'CuiStack-root',

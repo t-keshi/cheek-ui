@@ -3,13 +3,7 @@ import clsx from 'clsx';
 import { forwardRef } from 'react';
 import { space, SpaceProps, text, TextProps } from '../../style-system/configs';
 import { convertToCssFactory } from '../../style-system/convertToCss';
-import {
-  EmotionProps,
-  OwnerStateRecord,
-  OwnerStateResolver,
-  Theme,
-  TypographyVariantKey,
-} from '../../type';
+import { EmotionProps, OwnerStateRecord, Theme, TypographyVariantKey } from '../../type';
 
 type TypographyOwnerProps = Partial<{
   variant: TypographyVariantKey;
@@ -27,30 +21,19 @@ type TypographyOwnerState = {
 
 type TypographyCuiSystemProps = SpaceProps & TextProps;
 
+type TypographyEmotionProps = OwnerStateRecord<TypographyOwnerProps> &
+  TypographyCuiSystemProps &
+  EmotionProps;
+
 type TypographyRootType = StyledComponent<
   Omit<React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>, 'color'>,
-  OwnerStateRecord<TypographyOwnerProps> & TypographyCuiSystemProps & EmotionProps,
+  TypographyEmotionProps,
   Theme
 >;
 
 export type TypographyProps = TypographyOwnerProps &
   TypographyCuiSystemProps &
   Omit<EmotionProps, 'theme'> & { className?: string };
-
-const ownerStateResolver: OwnerStateResolver<TypographyOwnerState> = ({ ownerState, theme }) => ({
-  ...(ownerState.variant && theme.typography[ownerState.variant]),
-  ...(ownerState.noWrap && {
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-  }),
-  ...(ownerState.gutterBottom && {
-    marginBottom: '0.35em',
-  }),
-  ...(ownerState.paragraph && {
-    marginBottom: 16,
-  }),
-});
 
 const cuiSystemConfig = {
   ...space,
@@ -59,13 +42,27 @@ const cuiSystemConfig = {
 
 const css = convertToCssFactory(cuiSystemConfig);
 
-const TypographyRoot = styled.p(
-  {
+const TypographyRoot = styled.p((props) => {
+  const { ownerState, theme } = props as { ownerState: TypographyOwnerState; theme: Theme };
+
+  return {
+    display: 'flex',
     margin: 0,
-  },
-  ownerStateResolver,
-  css,
-) as TypographyRootType;
+    ...(ownerState.variant && theme.typography[ownerState.variant]),
+    ...(ownerState.noWrap && {
+      overflow: 'hidden',
+      textOverflow: 'ellipsis',
+      whiteSpace: 'nowrap',
+    }),
+    ...(ownerState.gutterBottom && {
+      marginBottom: '0.35em',
+    }),
+    ...(ownerState.paragraph && {
+      marginBottom: 16,
+    }),
+    ...css(props),
+  };
+}) as TypographyRootType;
 
 const classes = {
   root: 'CuiTypography-root',

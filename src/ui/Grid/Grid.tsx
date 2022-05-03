@@ -15,7 +15,7 @@ import {
 } from '../../style-system/configs';
 import { space, SpaceProps } from '../../style-system/configs/space';
 import { convertToCssFactory } from '../../style-system/convertToCss';
-import { EmotionProps, OwnerStateRecord, OwnerStateResolver, Theme } from '../../type';
+import { EmotionProps, OwnerStateRecord, Theme } from '../../type';
 
 type GridOwnerProps = Partial<{
   inline: boolean;
@@ -40,12 +40,6 @@ export type GridProps = GridOwnerProps &
   GridCuiSystemProps &
   Omit<EmotionProps, 'theme'> & { className?: string };
 
-const ownerStateResolver: OwnerStateResolver<GridOwnerProps> = ({ ownerState }) => ({
-  ...(ownerState.inline && {
-    display: 'inline-grid',
-  }),
-});
-
 const cuiSystemConfig = {
   ...border,
   ...background,
@@ -57,7 +51,17 @@ const cuiSystemConfig = {
 
 const css = convertToCssFactory(cuiSystemConfig);
 
-export const GridRoot = styled.div({ display: 'grid' }, ownerStateResolver, css) as GridRootType;
+export const GridRoot = styled.div((props) => {
+  const { ownerState } = props as { ownerState: GridOwnerState; theme: Theme };
+
+  return {
+    display: 'grid',
+    ...(ownerState.inline && {
+      display: 'inline-grid',
+    }),
+    ...css(props),
+  };
+}) as GridRootType;
 
 const classes = {
   root: 'CuiGrid-root',

@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Typography } from './Typography';
 
 export default {
-  title: 'Inputs/Typography',
+  title: 'DataDisplay/Typography',
   component: Typography,
   parameters: {
     layout: 'fullscreen',

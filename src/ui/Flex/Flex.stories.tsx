@@ -2,7 +2,7 @@ import { ComponentMeta, ComponentStory } from '@storybook/react';
 import { Flex } from './Flex';
 
 export default {
-  title: 'Inputs/Flex',
+  title: 'Layout/Flex',
   component: Flex,
   parameters: {
     layout: 'fullscreen',
